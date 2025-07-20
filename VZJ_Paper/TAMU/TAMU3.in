@@ -1,0 +1,1269 @@
+SIMULATION
+  SIMULATION_TYPE SUBSURFACE
+  PROCESS_MODELS
+    SUBSURFACE_FLOW flow
+      MODE RICHARDS
+    /
+    SUBSURFACE_TRANSPORT transport
+      MODE GIRT
+    /
+  /
+  CHECKPOINT
+    TIMES d 3600.0
+    FORMAT HDF5
+/
+END
+
+SUBSURFACE
+
+REFERENCE_TEMPERATURE 25.d0
+
+#=========================== chemistry ========================================
+CHEMISTRY
+  PRIMARY_SPECIES
+  Acetate-
+  Al+++
+  Ca++
+  Cl-
+  Fe++
+  Fe+++
+  H+
+  H2O
+  HCO3-
+  HS-
+  K+
+  Mg++
+  Na+
+  NH3(aq)
+  NO3-
+  NO2-
+  N2(aq)
+  O2(aq)
+  SO4--
+  SiO2(aq)
+  HPO4--
+  /
+  DECOUPLED_EQUILIBRIUM_REACTIONS
+  Acetate-
+  Al+++
+  Ca++
+  Cl-
+  Fe++
+  Fe+++
+  H+
+  H2O
+  HCO3-
+  HS-
+  K+
+  Mg++
+  Na+
+  NH3(aq)
+  NO3-
+  NO2-
+  N2(aq)
+  O2(aq)
+  SO4--
+  SiO2(aq)
+  HPO4--
+  /
+  SECONDARY_SPECIES
+    AlO2-
+    AlO+
+    AlOH++
+    HAlO2(aq)
+    AlSO4+
+    Al(Acetate)++
+    Al(Acetate)2+
+    CaCl+
+    CaCl2(aq)
+    CaSO4(aq)
+    CaOH+
+    CaNO3+
+    CaCO3(aq)
+    CaHCO3+
+    Ca(Acetate)+
+    Ca(Acetate)2(aq)
+    CaHSiO3+
+    CO3--
+    CO2(aq)
+    FeOH+
+    Fe(OH)3-
+    Fe(OH)4--
+    FeOH++
+    FeCl+
+    FeCl++
+    FeCl2(aq)
+    FeSO4(aq)
+    FeSO4+
+    FeNO2++
+    FeNO3++
+    FeCO3(aq)
+    FeHCO3+
+    Fe(Acetate)+
+    Fe(Acetate)2
+    Fe(CO3)2--
+    FeO(aq)
+    FeO+
+    FeO2-
+    FeS(aq)
+    HFeO2(aq)
+    HFeO2-
+    KOH(aq)
+    KCl(aq)
+    KSO4-
+    KHSO4(aq)
+    K(Acetate)(aq)
+    MgOH+
+    Mg4(OH)4++++
+    MgCl+
+    MgSO4(aq)
+    Mg(Acetate)+
+    MgCO3(aq)
+    MgHCO3+
+    MgHSiO3+
+    NH4SO4-
+    HNO2(aq)
+    HNO3(aq)
+    NH4+
+    NaOH(aq)
+    NaCl(aq)
+    NaSO4-
+    NaCO3-
+    NaHCO3(aq)
+    Na(Acetate)(aq)
+    NaHSiO3+
+    OH-
+    S--
+    H2S(aq)
+    HSO4-
+    H2SO4(aq)
+    HSiO3-
+    H(Acetate)(aq)
+    AlH2PO4++
+    AlHPO4+
+    CaH2PO4+
+    CaHPO4(aq)
+    CaP2O7--
+    CaPO4-
+    FeH2PO4+
+    FeH2PO4++
+    FeHPO4(aq)
+    FeHPO4+
+    FePO4-
+    H2P2O7--
+    H2PO4-
+    H3P2O7-
+    H3PO4(aq)
+    H4P2O7(aq)
+    HP2O7---
+    KHPO4-
+    KP2O7---
+    MgH2PO4+
+    MgHPO4(aq)
+    MgP2O7--
+    MgPO4-
+    Na2P2O7--
+    NaHP2O7--
+    NaHPO4-
+    NaP2O7---
+    P2O7----
+    PH4+
+    PO4---
+  /
+  PASSIVE_GAS_SPECIES
+    CO2(g)
+    O2(g)
+  /
+  MINERALS
+    Quartz
+    K-Feldspar
+    Calcite
+    Goethite
+    C6H10O5(s)
+    Hydroxyapatite     
+  /
+  MINERAL_KINETICS
+   Hydroxyapatite
+     RATE_CONSTANT 1.15e-07 mol/cm^2-sec
+    /
+   Quartz
+     RATE_CONSTANT 4.57e-14 mol/cm^2-sec
+    /
+   K-Feldspar
+    PREFACTOR
+     RATE_CONSTANT 3.89e-13 mol/cm^2-sec
+     ACTIVATION_ENERGY 38.00d0
+    /
+    PREFACTOR
+     RATE_CONSTANT 8.71e-11 mol/cm^2-sec
+     ACTIVATION_ENERGY 51.70d0
+     PREFACTOR_SPECIES H+  
+      ALPHA  1.0
+     /
+    /
+    PREFACTOR
+     RATE_CONSTANT 6.31e-22 mol/cm^2-sec
+     ACTIVATION_ENERGY 94.10d0
+     PREFACTOR_SPECIES Al+++  
+      ALPHA  1.0
+     /
+    /
+   /
+   Calcite
+    PREFACTOR
+     RATE_CONSTANT 1.55d-06 mol/cm^2-sec
+     ACTIVATION_ENERGY 23.5d0
+    /
+    PREFACTOR
+     RATE_CONSTANT 5.01d-01 mol/cm^2-sec
+     ACTIVATION_ENERGY 14.4d0
+     PREFACTOR_SPECIES H+  
+      ALPHA  1.0
+     /
+    /
+    PREFACTOR
+     RATE_CONSTANT 3.31d-04 mol/cm^2-sec
+     ACTIVATION_ENERGY 35.4d0
+     PREFACTOR_SPECIES HCO3-  
+      ALPHA  1.0
+     /
+    /
+   /
+   Goethite
+    RATE_CONSTANT 1.00d-9 mol/cm^2-sec
+    ACTIVATION_ENERGY 72.3d0
+   /
+   C6H10O5(s)
+    RATE_CONSTANT 2.00d-10 mol/cm^2-sec
+    ACTIVATION_ENERGY 72.3d0
+   /
+  /
+  SORPTION
+  SURFACE_COMPLEXATION_RXN
+    EQUILIBRIUM
+    MINERAL Goethite
+    SITE >FeOH 2.31e-2
+    COMPLEXES
+      >FeOH-HPO4
+    /
+   /
+  /
+  # Redox reactions with heterotrophic pathways
+  # 1 Acetate aerobic respiration
+  MICROBIAL_REACTION
+    REACTION 1.0000 Acetate-  + 2.0000 O2(aq)  -> 2.0000 HCO3-  + 1.0000 H+ 
+    RATE_CONSTANT       3.0d-12
+    MONOD
+      SPECIES_NAME O2(aq)
+      HALF_SATURATION_CONSTANT 2.41d-5
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+  /
+  # 2 Denitrification1
+  MICROBIAL_REACTION
+    REACTION 1.000 Acetate-  + 4.0000 NO3-  -> 2.0000 HCO3-  + 4.0000 NO2-  + 1.0000 H+ 
+    RATE_CONSTANT 3.0d-10
+    MONOD
+      SPECIES_NAME NO3-
+      HALF_SATURATION_CONSTANT 1.13d-4
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    INHIBITION
+      SPECIES_NAME O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 3.22d-7
+    /
+  /
+  # 3 Denitrification2
+  MICROBIAL_REACTION
+    REACTION 1.0000 Acetate-  + 2.6667 NO2-  + 1.6667 H+  -> 2.0000 HCO3-  + 1.3330 N2(aq)  + 1.3330 H2O 
+    RATE_CONSTANT 4.0d-07
+    MONOD
+      SPECIES_NAME NO2-
+      HALF_SATURATION_CONSTANT 1.13d-4 
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    INHIBITION
+      SPECIES_NAME O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 3.22d-7
+    /
+  /
+  # 4 Nitrification
+  MICROBIAL_REACTION
+    REACTION 1.0000 NH3(aq)  + 2.0000 O2(aq)  -> 1.0000 NO3-  + 1.0000 H+  + 1.0000 H2O 
+    RATE_CONSTANT 5.27d-04
+    MONOD
+      SPECIES_NAME NH3(aq)
+      HALF_SATURATION_CONSTANT 1.48e-05 
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    MONOD
+      SPECIES_NAME O2(aq)
+      HALF_SATURATION_CONSTANT 2.41e-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+  /
+  # 5 Fe(III) reduction
+  MICROBIAL_REACTION
+    REACTION 1.0000 Acetate-  + 8.0000 Fe+++  + 4.0000 H2O  -> 2.0000 HCO3-  + 8.000 Fe++  + 9.0000 H+ 
+    RATE_CONSTANT 1.0d-13
+    INHIBITION
+      SPECIES_NAME O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 3.22d-7
+    /
+    INHIBITION
+      SPECIES_NAME NO3-
+      TYPE MONOD
+      INHIBITION_CONSTANT 1.d-6 
+    /
+  /
+  # 6 Sulfate reduction
+  MICROBIAL_REACTION
+    REACTION 1.000 Acetate-  + 1.000 SO4--  -> 2.000 HCO3-  + 1.000 HS- 
+    RATE_CONSTANT       3.d-012
+    MONOD
+      SPECIES_NAME SO4--
+      HALF_SATURATION_CONSTANT 1.0d-03
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    INHIBITION
+      SPECIES_NAME O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 1.61d-08
+    /
+    INHIBITION
+      SPECIES_NAME NO3-
+      TYPE MONOD
+      INHIBITION_CONSTANT 1.d-07
+    /
+    INHIBITION
+      SPECIES_NAME Fe+++
+      TYPE MONOD
+      INHIBITION_CONSTANT 1.d-012
+    /
+  /
+  # Redox reactions with chemolithoautotrophic pathways
+  # 7 Sulfide oxidation
+  MICROBIAL_REACTION
+    REACTION 0.50 HS-  + 1.0 O2(aq)  -> 0.5 SO4--  + 0.5 H+ 
+    RATE_CONSTANT       2.38d-08
+    MONOD
+      SPECIES_NAME        O2(aq)
+      HALF_SATURATION_CONSTANT 2.41d-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    MONOD
+      SPECIES_NAME        HS-
+      HALF_SATURATION_CONSTANT 1.d-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+  /
+Skip
+  # 8 Fe(II) oxidation
+  MICROBIAL_REACTION
+    REACTION 1.0 Fe++  + 0.25 O2(aq)  + 1.0 H+  -> 1.0 Fe+++  + 0.50 H2O 
+    RATE_CONSTANT       5.25d-012
+    MONOD
+      SPECIES_NAME        O2(aq)
+      HALF_SATURATION_CONSTANT 2.41d-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    MONOD
+      SPECIES_NAME        Fe++
+      HALF_SATURATION_CONSTANT 1.d-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+  /
+Noskip
+  # 9 Nitrate reduction by Sulfide
+  MICROBIAL_REACTION
+    REACTION 1.000 HS-  + 1.600 NO3-  + 0.600 H+  -> 1.000 SO4--  + 0.800 N2(aq)  + 0.800 H2O
+    RATE_CONSTANT       7.d-08
+    MONOD
+      SPECIES_NAME NO3-
+      HALF_SATURATION_CONSTANT 1.13d-04
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    MONOD
+      SPECIES_NAME HS-
+      HALF_SATURATION_CONSTANT 1.d-05
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+   INHIBITION
+      SPECIES_NAME O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 1.61d-08
+    /
+  /
+  # 10 Nitrate reduction by Ferrous
+  MICROBIAL_REACTION
+    REACTION 1.0 Fe++  + 0.20 NO3-  + 1.20 H+  -> 1.00 Fe+++  + 0.10 N2(aq)  + 0.60 H2O 
+    RATE_CONSTANT       7.d-10
+    MONOD
+      SPECIES_NAME NO3-
+      HALF_SATURATION_CONSTANT 1.13d-04
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+    MONOD
+      SPECIES_NAME Fe++
+      HALF_SATURATION_CONSTANT 1.0d-5
+      THRESHOLD_CONCENTRATION 1.d-30
+    /
+   INHIBITION
+      SPECIES_NAME        O2(aq)
+      TYPE MONOD
+      INHIBITION_CONSTANT 3.22d-6
+    /
+  /
+  DATABASE ./Reactions.dat
+  LOG_FORMULATION
+  ACTIVITY_COEFFICIENTS OFF
+  MOLAL
+  OUTPUT
+    TOTAL
+    PRIMARY_SPECIES
+  /
+END
+
+#=========================== discretization ===================================
+GRID
+  TYPE STRUCTURED
+  ORIGIN 0.d0 0.d0 0.d0
+  NXYZ 84 1 108
+  DXYZ
+     5.0
+     1.00
+     0.25
+  /
+END
+
+#=========================== fluid properties =================================
+FLUID_PROPERTY
+  DIFFUSION_COEFFICIENT 1.d-9
+END
+
+#=========================== material properties ==============================
+MATERIAL_PROPERTY layer1
+  ID 1
+  POROSITY 0.49d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc1
+  PERMEABILITY
+    PERM_X 2.1d-12
+    PERM_Y 2.1d-12
+    PERM_Z 2.1d-13
+  /
+END
+
+MATERIAL_PROPERTY layer2
+  ID 2
+  POROSITY 0.52d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc2
+  PERMEABILITY
+    PERM_X 3.6d-12
+    PERM_Y 3.6d-12
+    PERM_Z 3.6d-13
+  /
+END
+
+MATERIAL_PROPERTY layer3
+  ID 3
+  POROSITY 0.52d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc3
+  PERMEABILITY
+    PERM_X 3.5d-12
+    PERM_Y 3.5d-12
+    PERM_Z 3.5d-13
+  /
+END
+
+MATERIAL_PROPERTY layer4
+  ID 4
+  POROSITY 0.51d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc4
+  PERMEABILITY
+    PERM_X 2.6d-12
+    PERM_Y 2.6d-12
+    PERM_Z 2.6d-13
+  /
+END
+
+MATERIAL_PROPERTY layer5
+  ID 5
+  POROSITY 0.51d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc5
+  PERMEABILITY
+    PERM_X 3.4d-12
+    PERM_Y 3.4d-12
+    PERM_Z 3.4d-13
+  /
+END
+
+MATERIAL_PROPERTY layer6
+  ID 6
+  POROSITY 0.52d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc6
+  PERMEABILITY
+    PERM_X 3.1d-12
+    PERM_Y 3.1d-12
+    PERM_Z 3.1d-13
+  /
+END
+
+MATERIAL_PROPERTY layer7
+  ID 7
+  POROSITY 0.51d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc7
+  PERMEABILITY
+    PERM_X 3.4d-12
+    PERM_Y 3.4d-12
+    PERM_Z 3.4d-13
+  /
+END
+
+MATERIAL_PROPERTY layer8
+  ID 8
+  POROSITY 0.41d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc8
+  PERMEABILITY
+    PERM_X 7.7d-13
+    PERM_Y 7.7d-13
+    PERM_Z 7.7d-14
+  /
+END
+
+MATERIAL_PROPERTY layer9
+  ID 9
+  POROSITY 0.39d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc9
+  PERMEABILITY
+    PERM_X 4.5d-11
+    PERM_Y 4.5d-11
+    PERM_Z 4.5d-12
+  /
+END
+
+MATERIAL_PROPERTY layer10
+  ID 10
+  POROSITY 0.38d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc10
+  PERMEABILITY
+    PERM_X 1.3d-10
+    PERM_Y 1.3d-10
+    PERM_Z 1.3d-11
+  /
+END
+
+MATERIAL_PROPERTY layer11
+  ID 11
+  POROSITY 0.38d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc11
+  PERMEABILITY
+    PERM_X 1.3d-10
+    PERM_Y 1.3d-10
+    PERM_Z 1.3d-11
+  /
+END
+
+MATERIAL_PROPERTY layer12
+  ID 12
+  POROSITY 0.50d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc12
+  PERMEABILITY
+    PERM_X 1.8d-12
+    PERM_Y 1.8d-12
+    PERM_Z 1.8d-13
+  /
+END
+
+MATERIAL_PROPERTY layer13
+  ID 13
+  POROSITY 0.38d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc13
+  PERMEABILITY
+    PERM_X 1.7d-10
+    PERM_Y 1.7d-10
+    PERM_Z 1.7d-11
+  /
+END
+
+MATERIAL_PROPERTY layer14
+  ID 14
+  POROSITY 0.39d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc14
+  PERMEABILITY
+    PERM_X 2.4d-11
+    PERM_Y 2.4d-11
+    PERM_Z 2.4d-12
+  /
+END
+
+MATERIAL_PROPERTY layer15
+  ID 15
+  POROSITY 0.38d0
+  TORTUOSITY 0.5d0
+  CHARACTERISTIC_CURVES wrc15
+  PERMEABILITY
+    PERM_X 5.8d-11
+    PERM_Y 5.8d-11
+    PERM_Z 5.8d-12
+  /
+END
+#=========================== characteristic curves ============================
+CHARACTERISTIC_CURVES wrc1
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.240
+    ALPHA  1.46d-4
+    LIQUID_RESIDUAL_SATURATION 0.099
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.340
+    LIQUID_RESIDUAL_SATURATION 0.099
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc2
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.204
+    ALPHA  1.72d-4
+    LIQUID_RESIDUAL_SATURATION 0.105
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.304
+    LIQUID_RESIDUAL_SATURATION 0.105
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc3
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.208
+    ALPHA  1.69d-4
+    LIQUID_RESIDUAL_SATURATION 0.105
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.308
+    LIQUID_RESIDUAL_SATURATION 0.105
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc4
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.228
+    ALPHA  1.54d-4
+    LIQUID_RESIDUAL_SATURATION 0.105
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.328
+    LIQUID_RESIDUAL_SATURATION 0.105
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc5
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.207
+    ALPHA  1.70d-4
+    LIQUID_RESIDUAL_SATURATION 0.103
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.307
+    LIQUID_RESIDUAL_SATURATION 0.103
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc6
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.216
+    ALPHA  1.64d-4
+    LIQUID_RESIDUAL_SATURATION 0.106
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.316
+    LIQUID_RESIDUAL_SATURATION 0.106
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc7
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.207
+    ALPHA  1.70d-4
+    LIQUID_RESIDUAL_SATURATION 0.103
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.307
+    LIQUID_RESIDUAL_SATURATION 0.103
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc8
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.290
+    ALPHA  1.45d-4
+    LIQUID_RESIDUAL_SATURATION 0.073
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.390
+    LIQUID_RESIDUAL_SATURATION 0.073
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc9
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.636
+    ALPHA  4.30d-4
+    LIQUID_RESIDUAL_SATURATION 0.040
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.736
+    LIQUID_RESIDUAL_SATURATION 0.040
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc10
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.754
+    ALPHA  3.59d-4
+    LIQUID_RESIDUAL_SATURATION 0.049
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.854
+    LIQUID_RESIDUAL_SATURATION 0.049
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc11
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.754
+    ALPHA  3.59d-4
+    LIQUID_RESIDUAL_SATURATION 0.049
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.854
+    LIQUID_RESIDUAL_SATURATION 0.049
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc12
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.271
+    ALPHA  1.27d-4
+    LIQUID_RESIDUAL_SATURATION 0.100
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.371
+    LIQUID_RESIDUAL_SATURATION 0.100
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc13
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.774
+    ALPHA  3.44d-4
+    LIQUID_RESIDUAL_SATURATION 0.051
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.874
+    LIQUID_RESIDUAL_SATURATION 0.051
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc14
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.543
+    ALPHA  4.28d-4
+    LIQUID_RESIDUAL_SATURATION 0.040
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.643
+    LIQUID_RESIDUAL_SATURATION 0.040
+    SMOOTH
+  /
+END
+
+CHARACTERISTIC_CURVES wrc15
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.656
+    ALPHA  3.34d-4
+    LIQUID_RESIDUAL_SATURATION 0.052
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.756
+    LIQUID_RESIDUAL_SATURATION 0.052
+    SMOOTH
+  /
+END
+
+#=========================== output options ===================================
+OUTPUT
+  PERIODIC TIME 1.0 d
+  PERIODIC_OBSERVATION TIME 1.0 d
+  FORMAT HDF5
+  VELOCITY_AT_CENTER
+  VARIABLES
+    LIQUID_SATURATION
+    LIQUID_PRESSURE
+   /
+ OBSERVATION_FILE
+#  FORMAT HDF5
+  PRINT_COLUMN_IDS
+  VELOCITY_AT_CENTER
+  VARIABLES
+    LIQUID_SATURATION
+    LIQUID_PRESSURE
+ /
+/
+END
+#=========================== times ============================================
+TIME
+ FINAL_TIME 3.1104E+08 s
+  INITIAL_TIMESTEP_SIZE 1.0000E+01 s
+  MAXIMUM_TIMESTEP_SIZE 1.8000E+03 s at 0. s           # 30 min at day 0
+  MAXIMUM_TIMESTEP_SIZE 3.6000E+03 s at 4.3200E+05 s   # 60 min at day 5
+  MAXIMUM_TIMESTEP_SIZE 7.2000E+03 s at 8.6400E+05 s   # 120 min at day 10
+  MAXIMUM_TIMESTEP_SIZE 1.4400E+04 s at 1.7280E+06 s   # 240 min at day 20
+  MAXIMUM_TIMESTEP_SIZE 2.8800E+04 s at 3.4560E+06 s   # 480 min at day 40
+  MAXIMUM_TIMESTEP_SIZE 5.7600E+04 s at 6.9120E+06 s   # 960 min at day 80
+  MAXIMUM_TIMESTEP_SIZE 8.6400E+04 s at 8.6400E+06 s   # 1440 min at day 100
+END
+
+Skip
+TIME
+ FINAL_TIME 3200.d0 day
+  INITIAL_TIMESTEP_SIZE 1.15e-5 day
+  MAXIMUM_TIMESTEP_SIZE 1.d0 day
+END
+Noskip
+#=========================== regions ==========================================
+REGION all
+  COORDINATES
+    0.d0 0.d0 0.d0
+    420.d0 1.d0 27.d0
+  /
+END
+
+REGION Top
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION Bottom
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION West
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION East
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION North
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION South
+  FILE  ./TAMU_material_ids2.h5
+END
+
+REGION Obs_pt_0.3
+  COORDINATE 300.d0 1.d0 17.7d0
+END
+
+REGION Obs_pt_0.6
+  COORDINATE 300.d0 1.d0 17.4d0
+END
+
+REGION Obs_pt_0.9
+  COORDINATE 300.d0 1.d0 17.1d0
+END
+
+REGION Obs_pt_1.5
+  COORDINATE 300.d0 1.d0 16.5d0
+END
+
+REGION Obs_pt_2.7
+  COORDINATE 300.d0 1.d0 15.3d0
+END
+
+REGION Obs_pt_3.4
+  COORDINATE 300.d0 1.d0 14.6d0
+END
+
+REGION Obs_pt_4.0
+  COORDINATE 300.d0 1.d0 14.0d0
+END
+
+REGION Obs_pt_5.8
+  COORDINATE 300.d0 1.d0 12.2d0
+END
+
+REGION Obs_pt_7.3
+  COORDINATE 300.d0 1.d0 10.7d0
+END
+
+REGION Obs_pt_10.4
+  COORDINATE 300.d0 1.d0 7.6d0
+END
+
+REGION Obs_pt_11.9
+  COORDINATE 300.d0 1.d0 6.1d0
+END
+
+REGION Obs_pt_13.4
+  COORDINATE 300.d0 1.d0 4.6d0
+END
+
+REGION Obs_pt_14.6
+  COORDINATE 300.d0 1.d0 3.4d0
+END
+
+REGION Obs_pt_16.5
+  COORDINATE 300.d0 1.d0 1.5d0
+END
+
+REGION Obs_pt_18.0
+  COORDINATE 300.d0 1.d0 0.d0
+END
+
+#=========================== observation points ===============================
+OBSERVATION
+  REGION Obs_pt_0.3
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_0.6
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_0.9
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_1.5
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_2.7
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_3.4
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_4.0
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_5.8
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_7.3
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_10.4
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_11.9
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_13.4
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_14.6
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_16.5
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+OBSERVATION
+  REGION Obs_pt_18.0
+  AT_CELL_CENTER 
+  VELOCITY 
+END
+
+#=========================== flow conditions ==================================
+FLOW_CONDITION initial
+  TYPE
+    LIQUID_PRESSURE HYDROSTATIC
+  /
+  INTERPOLATION linear
+  DATUM 0.d0 0.d0 12.87d0
+  LIQUID_PRESSURE 101325
+END
+
+FLOW_CONDITION precip
+  TYPE
+    LIQUID_FLUX NEUMANN
+  /
+  LIQUID_FLUX FILE ./Precip.dat
+END
+
+FLOW_CONDITION east
+  TYPE
+    LIQUID_PRESSURE SEEPAGE
+  /
+  INTERPOLATION linear
+  DATUM FILE ./River_East_TAMU.dat
+  LIQUID_PRESSURE 101325.d0
+END
+
+FLOW_CONDITION west
+  TYPE
+    LIQUID_PRESSURE HYDROSTATIC
+  /
+  INTERPOLATION linear
+  DATUM FILE ./GWL_West_TAMU.dat
+  LIQUID_PRESSURE 101325.d0
+END
+
+#=========================== transport conditions =============================
+TRANSPORT_CONDITION initialt
+  TYPE DIRICHLET_ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 initialt
+  /
+END
+
+TRANSPORT_CONDITION brazos_river
+  TYPE DIRICHLET_ZERO_GRADIENT
+  CONSTRAINT_LIST
+     0.d0 river_water40
+#    67.d0 river_water67
+#    107.d0 river_water107
+#    136.d0 river_water136
+#    177.d0 river_water177
+#    194.d0 river_water194
+#    308.d0 river_water308
+#    342.d0 river_water342
+  /
+END
+
+TRANSPORT_CONDITION well1
+  TYPE DIRICHLET_ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 well1
+  /
+END
+
+TRANSPORT_CONDITION rainwater
+  TYPE DIRICHLET_ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 rainwater
+  /
+END
+
+DATASET DOM_vol_frac
+  HDF5_DATASET_NAME C6H10O5(s)_vol_frac
+  FILENAME TAMU_C6H10O5(s)_vol_frac.h5
+END
+
+DATASET goethite_vol_frac
+  HDF5_DATASET_NAME goethite_vol_frac
+  FILENAME TAMU_goethite_vol_frac.h5
+END
+
+#=========================== transport constraints ============================
+CONSTRAINT initialt
+  CONCENTRATIONS
+    Acetate-     9.94E-04	M	C6H10O5(s)
+    Al+++    	 9.74E-10	T
+    Ca++     	 4.48E-03	T
+    Cl-      	 2.57E-03	T
+    Fe++     	 7.85E-15	T	 
+    Fe+++    	 6.28E-16	M	Goethite
+    H+       	 7.01		P	Calcite	
+    H2O      	 1.00E+00	T	 
+    HCO3-    	 9.53E-07	T	 
+    HS-      	 1.00E-10	T	
+    K+       	 2.00E-04	T	 
+    Mg++     	 4.06E-03	T	 
+    Na+      	 7.56E-03	T	 
+    NH3(aq)  	 2.22E-06	T	 
+    NO3-     	 1.49E-05	T	 
+    NO2-     	 1.00E-10	T	 
+    N2(aq)   	 1.00E-10	T	 
+    O2(aq)   	 1.00E-10	T 	 	 
+    SO4--    	 6.94E-04	Z
+    SiO2(aq) 	 4.04E-04	T
+    HPO4--	 6.94E-04	T	 
+  /
+  MINERALS
+    Quartz		0.5096			60000  m^2/m^3	
+    K-Feldspar		0.0500			60000  m^2/m^3	
+    Calcite  		0.0080			60000  m^2/m^3	
+    Goethite 		0.0018			80000  m^2/m^3			
+    C6H10O5(s)  	0.2000			1.13e05  m^2/m^3
+    Hydroxyapatite      0.0500			60000
+  /
+END
+
+CONSTRAINT well1
+  CONCENTRATIONS
+    Acetate-   6.66e-5         T      
+    Al+++      1.51e-5         T
+    Ca++       5.32e-3         T
+    Cl-        2.19e-4         T
+    Fe++       1.40e-5         T	
+    Fe+++      6.00e-6         T	
+    H+         1.00e-7         T	
+    H2O        1.00e00	       T  
+    HCO3-      2.19e-3         T 
+    HS-        1.00e-10        T	
+    K+         2.19e-6         T
+    Mg++       2.03e-4         T
+    Na+        2.74e-3         T
+    NH3(aq)    4.83e-8         T
+    NO3-       2.00e-7         T
+    NO2-       1.00e-10        T
+    N2(aq)     1.00e-10        T
+    O2(aq)     5.19e-4         T 
+    SO4--      1.01e-3         T
+    SiO2(aq)   1.00e-10        T
+    HPO4--     6.94E-04	       T 
+  /     
+END
+
+CONSTRAINT rainwater
+  CONCENTRATIONS
+    Acetate-   9.94e-4         T
+    Al+++      9.74e-10        T
+    Ca++       4.48e-3         T
+    Cl-        2.57e-3         T
+    Fe++       7.85e-5         T
+    Fe+++      6.28e-13        T
+    H+         6.94            P 
+    H2O        1.00e00	       T  
+    HCO3-      9.53e-5         T
+    HS-        1.07e-7         T
+    K+         2.00e-4         T
+    Mg++       4.06e-3         T
+    Na+        7.56e-3         T
+    NH3(aq)    2.22e-6         T
+    NO3-       1.00e-6         T
+    NO2-       1.00e-10        T
+    N2(aq)     1.00e-10        T
+    O2(aq)     1.00e-03	       G O2(g)	
+    SO4--      6.93e-3         T
+    SiO2(aq)   4.04e-4         T
+    HPO4--     6.94E-04	       T 
+  /     
+END
+
+CONSTRAINT river_water40
+  CONCENTRATIONS
+    Acetate-   6.66e-5         T      
+    Al+++      1.51e-5         T
+    Ca++       5.32e-3         T
+    Cl-        2.19e-4         T
+    Fe++       1.40e-5         T	
+    Fe+++      6.00e-6         T	
+    H+         1.00e-7         T	
+    H2O        1.00e00	       T  
+    HCO3-      2.19e-3         T 
+    HS-        1.00e-10        T	
+    K+         2.19e-6         T
+    Mg++       2.03e-4         T
+    Na+        2.74e-3         T
+    NH3(aq)    4.83e-8         T
+    NO3-       2.00e-7         T
+    NO2-       1.00e-10        T
+    N2(aq)     1.00e-10        T
+    O2(aq)     5.19e-4         T 
+    SO4--      1.01e-3         T
+    SiO2(aq)   1.00e-10        T
+    HPO4--     6.94E-04	       T  
+  /
+END
+#=========================== condition couplers ===============================
+INITIAL_CONDITION
+  FLOW_CONDITION initial
+  TRANSPORT_CONDITION initialt
+  REGION all
+END
+
+BOUNDARY_CONDITION west
+  FLOW_CONDITION west
+  TRANSPORT_CONDITION well1
+  REGION West
+END
+
+BOUNDARY_CONDITION east
+  FLOW_CONDITION east
+  TRANSPORT_CONDITION brazos_river
+  REGION East
+END
+
+BOUNDARY_CONDITION precip_top
+  FLOW_CONDITION precip
+  TRANSPORT_CONDITION rainwater
+  REGION Top
+END
+
+#=========================== stratigraphy couplers ============================
+STRATA
+  FILE ./TAMU_material_ids2.h5
+END
+
+END_SUBSURFACE
